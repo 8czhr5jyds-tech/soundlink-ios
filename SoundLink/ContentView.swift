@@ -4,15 +4,15 @@ import MediaPlayer
 
 struct ContentView: View {
     @StateObject private var audio = SoundLinkAudio()
-    
+
     var body: some View {
         ZStack {
             LinearGradient(colors: [Color(red: 0.035, green: 0.07, blue: 0.14), Color(red: 0.02, green: 0.025, blue: 0.055)], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-            
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 22) {
                     header
+                    speakerPairCard
                     outputCard
                     routeCard
                     testCard
@@ -25,7 +25,7 @@ struct ContentView: View {
         }
         .onAppear { audio.refreshRoutes() }
     }
-    
+
     private var header: some View {
         VStack(spacing: 10) {
             Image(systemName: "hifispeaker.2.fill")
@@ -41,7 +41,41 @@ struct ContentView: View {
         .frame(maxWidth: .infinity)
         .padding(.bottom, 4)
     }
-    
+
+    private var speakerPairCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Label("LE TUE CASSE", systemImage: "hifispeaker.fill")
+                .font(.caption.weight(.bold))
+                .tracking(1.1)
+                .foregroundStyle(.cyan)
+            speakerRow(name: "JBL Flip 3", technology: "JBL Connect", status: "Non compatibile con Auracast", icon: "speaker.wave.2.fill")
+            Divider().overlay(.white.opacity(0.12))
+            speakerRow(name: "JBL Go 4", technology: "Auracast", status: "Non compatibile con JBL Connect", icon: "hifispeaker.fill")
+            Text("Le due casse usano sistemi di collegamento differenti: non possono unirsi direttamente tra loro.")
+                .font(.caption)
+                .foregroundStyle(.white.opacity(0.68))
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(18)
+        .background(.white.opacity(0.065), in: RoundedRectangle(cornerRadius: 20))
+        .overlay(RoundedRectangle(cornerRadius: 20).stroke(.white.opacity(0.08)))
+    }
+
+    private func speakerRow(name: String, technology: String, status: String, icon: String) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundStyle(.cyan)
+                .frame(width: 34)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(name).font(.headline)
+                Text(technology).font(.subheadline.weight(.medium)).foregroundStyle(.white.opacity(0.82))
+                Text(status).font(.caption).foregroundStyle(.orange)
+            }
+            Spacer(minLength: 0)
+        }
+    }
+
     private var outputCard: some View {
         VStack(alignment: .leading, spacing: 14) {
             Label("USCITE AUDIO ATTIVE", systemImage: "waveform")
@@ -63,14 +97,11 @@ struct ContentView: View {
                             Text(output.detail).font(.caption).foregroundStyle(.white.opacity(0.55))
                         }
                         Spacer()
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
+                        Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
                     }
                 }
             }
-            Button {
-                audio.refreshRoutes()
-            } label: {
+            Button { audio.refreshRoutes() } label: {
                 Label("Aggiorna dispositivi", systemImage: "arrow.clockwise")
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity)
@@ -83,7 +114,7 @@ struct ContentView: View {
         .background(.white.opacity(0.065), in: RoundedRectangle(cornerRadius: 20))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(.white.opacity(0.08)))
     }
-    
+
     private var routeCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             Label("SCEGLI DOVE ASCOLTARE", systemImage: "airplayaudio")
@@ -108,7 +139,7 @@ struct ContentView: View {
         .background(.white.opacity(0.065), in: RoundedRectangle(cornerRadius: 20))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(.white.opacity(0.08)))
     }
-    
+
     private var testCard: some View {
         VStack(alignment: .leading, spacing: 14) {
             Label("PROVA AUDIO", systemImage: "speaker.wave.2.fill")
@@ -118,9 +149,7 @@ struct ContentView: View {
             Text("Riproduci un breve tono di test per controllare l'uscita selezionata.")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.68))
-            Button {
-                audio.playTestTone()
-            } label: {
+            Button { audio.playTestTone() } label: {
                 HStack {
                     Image(systemName: audio.isPlaying ? "waveform" : "play.fill")
                     Text(audio.isPlaying ? "Riproduzione in corso…" : "Riproduci test")
@@ -134,24 +163,26 @@ struct ContentView: View {
             .buttonStyle(.plain)
             .disabled(audio.isPlaying)
             if let message = audio.message {
-                Text(message)
-                    .font(.caption)
-                    .foregroundStyle(.white.opacity(0.65))
+                Text(message).font(.caption).foregroundStyle(.white.opacity(0.65))
             }
         }
         .padding(18)
         .background(.white.opacity(0.065), in: RoundedRectangle(cornerRadius: 20))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(.white.opacity(0.08)))
     }
-    
+
     private var compatibilityNote: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("NOTA SULLA COMPATIBILITÀ", systemImage: "info.circle")
+            Label("COSA SIGNIFICA PER SOUNDLINK", systemImage: "info.circle")
                 .font(.caption.weight(.bold))
                 .foregroundStyle(.orange)
-            Text("iOS decide quali uscite possono riprodurre audio contemporaneamente. Due casse Bluetooth JBL generiche non possono essere forzate in multi-output da un'app. La riproduzione su più casse può funzionare tramite AirPlay compatibile oppure tramite la funzione di collegamento tra casse prevista dal modello JBL.")
+            Text("Il Flip 3 usa JBL Connect, mentre il Go 4 usa Auracast: JBL indica questi sistemi come generazioni non interoperabili. Inoltre iOS non offre a un'app il controllo per inviare l'audio a due normali casse Bluetooth A2DP indipendenti. SoundLink può selezionare le uscite consentite da iOS e riprodurre un test, ma non può creare da sola un collegamento tra queste due casse.")
                 .font(.caption)
-                .foregroundStyle(.white.opacity(0.65))
+                .foregroundStyle(.white.opacity(0.68))
+                .fixedSize(horizontal: false, vertical: true)
+            Text("Obiettivo del prototipo: verificare il routing audio reale su iPhone e valutare un eventuale trasmettitore esterno compatibile.")
+                .font(.caption.weight(.medium))
+                .foregroundStyle(.white.opacity(0.82))
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
@@ -173,7 +204,7 @@ final class SoundLinkAudio: ObservableObject {
     @Published var isPlaying = false
     @Published var message: String?
     private var player: AVAudioPlayer?
-    
+
     func refreshRoutes() {
         let session = AVAudioSession.sharedInstance()
         do {
@@ -194,7 +225,7 @@ final class SoundLinkAudio: ObservableObject {
             return AudioOutput(id: output.uid, name: output.portName, detail: output.portType.rawValue, icon: icon)
         }
     }
-    
+
     func playTestTone() {
         do {
             let url = try makeTestTone()
@@ -214,7 +245,7 @@ final class SoundLinkAudio: ObservableObject {
             message = "Errore durante il test: \(error.localizedDescription)"
         }
     }
-    
+
     private func makeTestTone() throws -> URL {
         let sampleRate = 44_100.0
         let frameCount = Int(sampleRate * 2.0)
