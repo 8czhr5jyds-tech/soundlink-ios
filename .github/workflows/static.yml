@@ -3,9 +3,8 @@ name: Deploy SoundLink Safari PWA
 on:
   push:
     branches:
-      - feature/soundlink-safari-pwa
+      - main
     paths:
-      - 'web/**'
       - '.github/workflows/static.yml'
   workflow_dispatch:
 
@@ -15,12 +14,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: soundlink-pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
-    name: Validate and deploy SoundLink PWA
+    name: Deploy SoundLink PWA
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:
@@ -28,12 +27,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout SoundLink branch
+      - name: Checkout SoundLink app
         uses: actions/checkout@v4
         with:
           ref: feature/soundlink-safari-pwa
 
-      - name: Validate PWA files
+      - name: Validate website
         shell: bash
         run: |
           set -euo pipefail
@@ -41,16 +40,10 @@ jobs:
           test -s web/manifest.webmanifest
           test -s web/sw.js
           test -s web/icon.svg
-          node -e "const fs=require('fs'); const m=JSON.parse(fs.readFileSync('web/manifest.webmanifest','utf8')); if(!m.name || !m.start_url || !m.scope || !Array.isArray(m.icons) || !m.icons.length) process.exit(1); console.log('Manifest PWA valido:', m.name);"
-          grep -q "serviceWorker.register" web/index.html
-          echo "File PWA presenti e controlli superati."
+          node -e "const m=JSON.parse(require('fs').readFileSync('web/manifest.webmanifest','utf8')); if(!m.name || !m.start_url || !m.scope || !Array.isArray(m.icons) || !m.icons.length) process.exit(1);"
+          grep -q 'serviceWorker.register' web/index.html
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload site artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: web
