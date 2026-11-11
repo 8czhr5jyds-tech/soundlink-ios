@@ -160,7 +160,7 @@ struct ContentView: View {
     }
 }
 
-private struct AudioOutput: Identifiable {
+struct AudioOutput: Identifiable {
     let id: String
     let name: String
     let detail: String
@@ -237,7 +237,7 @@ final class SoundLinkAudio: ObservableObject {
         data.append(contentsOf: Array("data".utf8))
         append(UInt32(dataSize))
         for index in 0..<frameCount {
-            let fade = min(1.0, Double(index) / 2200.0, Double(frameCount - index) / 2200.0)
+            let fade = min(1.0, min(Double(index) / 2200.0, Double(frameCount - index) / 2200.0))
             let sample = Int16(sin(2.0 * Double.pi * 440.0 * Double(index) / sampleRate) * 0.22 * fade * Double(Int16.max))
             append(sample)
         }
