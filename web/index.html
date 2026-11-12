@@ -18,7 +18,7 @@
 main{max-width:540px;margin:auto;padding:22px 0 36px}.top{display:flex;align-items:center;gap:12px;margin:12px 0 28px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#67a8ff,#6556e8);display:grid;place-items:center;font-size:24px;font-weight:800;box-shadow:0 8px 28px #477de455}.brand{font-size:23px;font-weight:800;letter-spacing:.2px}.sub{color:var(--muted);font-size:13px;margin-top:3px}.pill{margin-left:auto;border:1px solid #2a4962;border-radius:30px;padding:7px 10px;color:#80dfd4;font-size:11px;font-weight:700}
 h1{font-size:29px;line-height:1.12;margin:0 0 10px;letter-spacing:-.7px}.lead{color:var(--muted);line-height:1.5;margin:0 0 22px}.card{background:linear-gradient(145deg,#151f33,#101727);border:1px solid var(--line);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 12px 30px #0002}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.cardhead strong{font-size:17px}.tag{font-size:11px;color:#8ea3c3;background:#202d44;border-radius:20px;padding:6px 9px}.speaker{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid #26334c}.speaker:first-of-type{border-top:0}.speakericon{width:45px;height:45px;border-radius:14px;background:#202e47;display:grid;place-items:center;font-size:23px}.speakername{font-weight:700}.speakerdesc{font-size:12px;color:var(--muted);margin-top:4px}.status{margin-left:auto;font-size:11px;color:#aab7cd;text-align:right}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8494ac;margin-right:5px}.btn{border:0;border-radius:15px;padding:15px 16px;font-size:15px;font-weight:750;width:100%;background:linear-gradient(100deg,#559bff,#7266f2);color:white;margin-top:9px;cursor:pointer}.btn.secondary{background:#202d44;color:#e8efff;border:1px solid #344564}.btn:disabled{opacity:.45;cursor:default}.btn:active{transform:scale(.99)}.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:12px 2px 0}.notice{border:1px solid #68572b;background:#302817;border-radius:16px;padding:14px;color:#f1d99d;font-size:13px;line-height:1.5;margin:16px 0}.steps{padding-left:20px;color:#c5d0e3;font-size:14px;line-height:1.65}.steps li{padding:3px 0}.foot{text-align:center;color:#73829b;font-size:11px;margin:26px 0 8px}.filepick{display:block;width:100%;padding:15px;border:1px dashed #52698e;border-radius:14px;background:#0d1525;color:#eaf1ff;font-size:14px}.trackname{font-weight:700;margin:13px 0 8px;overflow-wrap:anywhere}.audio{display:block;width:100%;margin-top:10px;accent-color:#5c9dff}.small{font-size:12px;color:var(--muted);line-height:1.5}.searchrow{display:flex;gap:8px;margin-top:12px}.searchrow input{min-width:0;flex:1;border:1px solid #344564;border-radius:13px;background:#0d1525;color:#f5f7fb;padding:13px;font-size:15px}.searchrow button{width:auto;margin:0;padding:0 16px}.results{display:grid;gap:10px;margin-top:14px}.result{display:flex;gap:11px;align-items:center;padding:10px;border:1px solid #293954;border-radius:15px;background:#0d1525}.art{width:62px;height:62px;object-fit:cover;border-radius:10px;background:#202d44}.resultmeta{min-width:0;flex:1}.resulttitle{font-weight:700;font-size:14px;line-height:1.3}.resultartist{font-size:12px;color:var(--muted);margin-top:4px}.resultalbum{font-size:11px;color:#8293ae;margin-top:3px}.musiclink{display:inline-block;color:#91bcff;font-size:12px;font-weight:700;text-decoration:none;margin-top:7px}.searchstatus{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}
 </style>
-<script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+
 </head>
 <body>
 <main>
@@ -43,19 +43,17 @@ h1{font-size:29px;line-height:1.12;margin:0 0 10px;letter-spacing:-.7px}.lead{co
  <p class="hint" id="musicMessage" aria-live="polite">Scegli un file per iniziare. La riproduzione avviene sull'uscita audio attiva dell'iPhone.</p>
 </section>
 <section class="card">
- <div class="cardhead"><strong>Apple Music</strong><span class="tag">MUSICKIT</span></div>
- <p class="small">Collega Apple Music per cercare i brani e riprodurli direttamente qui dentro SoundLink. È necessario un abbonamento Apple Music per la riproduzione completa.</p>
- <label for="developerToken" class="small" style="display:block;margin:12px 0 6px">Token sviluppatore Apple Music</label>
- <input id="developerToken" type="password" autocomplete="off" placeholder="Incolla il token sviluppatore Apple Music" style="width:100%;border:1px solid #344564;border-radius:13px;background:#0d1525;color:#f5f7fb;padding:13px;font-size:14px">
- <button class="btn secondary" id="connectAppleMusic" type="button">Configura e collega Apple Music</button>
- <div id="appleStatus" class="searchstatus" aria-live="polite">Apple Music non è ancora configurato.</div>
+ <div class="cardhead"><strong>Cerca musica gratuita</strong><span class="tag">CATALOGO AUDIUS</span></div>
+ <p class="small">Cerca brani disponibili gratuitamente nel catalogo Audius e ascoltali direttamente qui, senza aprire altre app e senza abbonamento SoundLink.</p>
  <div class="searchrow" style="margin-top:16px">
-  <input id="songQuery" type="search" placeholder="Cerca titolo o artista" autocomplete="off" aria-label="Titolo o artista">
+  <input id="songQuery" type="search" placeholder="Cerca titolo, artista o genere" autocomplete="off" aria-label="Titolo, artista o genere">
   <button class="btn" id="songSearchButton" type="button">Cerca</button>
  </div>
- <div id="searchStatus" class="searchstatus" aria-live="polite">Dopo aver configurato Apple Music, cerca un brano per titolo o artista.</div>
+ <div id="searchStatus" class="searchstatus" aria-live="polite">Scrivi il nome di una canzone o di un artista.</div>
  <div id="songResults" class="results"></div>
- <p class="hint">Il token sviluppatore deve essere generato dal tuo account Apple Developer con una chiave MusicKit. Non inserire mai qui il file privato .p8, la password Apple o il codice di verifica. Il token viene conservato solo nella memoria della sessione del browser.</p>
+ <div id="streamNow" class="searchstatus" aria-live="polite"></div>
+ <audio class="audio" id="catalogPlayer" controls preload="none"></audio>
+ <p class="hint">Il catalogo è composto da musica pubblicata su Audius: non contiene necessariamente tutte le hit commerciali o le versioni originali che trovi nei servizi in abbonamento. La disponibilità dipende dagli artisti e dai brani presenti.</p>
 </section>
 <section class="card">
  <div class="cardhead"><strong>Test audio</strong><span class="tag">440 Hz</span></div>
@@ -115,59 +113,46 @@ stopTest.addEventListener('click',()=>{
  if(osc){try{osc.stop()}catch(e){}osc=null}
  playTest.disabled=false;stopTest.disabled=true;testMessage.textContent='Test audio interrotto.';
 });
-let appleMusic=null;
-const appleStatus=document.getElementById('appleStatus');
-const tokenInput=document.getElementById('developerToken');
-const connectButton=document.getElementById('connectAppleMusic');
 const songInput=document.getElementById('songQuery');
 const searchStatus=document.getElementById('searchStatus');
 const songResults=document.getElementById('songResults');
-connectButton.addEventListener('click',async()=>{
- const token=tokenInput.value.trim();
- if(!token){appleStatus.textContent='Manca il token sviluppatore Apple Music. Va creato nell’account Apple Developer.';return;}
- if(!window.MusicKit){appleStatus.textContent='Libreria MusicKit Apple non ancora caricata. Aggiorna la pagina e riprova.';return;}
- connectButton.disabled=true;appleStatus.textContent='Configurazione Apple Music…';
- try{
-  await MusicKit.configure({developerToken:token,app:{name:'SoundLink',build:'1.0.0'},storefrontId:'it',suppressErrorDialog:true});
-  appleMusic=MusicKit.getInstance();
-  appleStatus.textContent='Apple Music configurato. Ora autorizza il tuo account per cercare e riprodurre i brani.';
-  await appleMusic.authorize();
-  appleStatus.textContent='Apple Music collegato. Puoi cercare e riprodurre i brani qui dentro SoundLink.';
- }catch(error){
-  appleStatus.textContent='Collegamento non completato: '+(error&&error.message?error.message:'verifica il token e riprova.');
- }finally{connectButton.disabled=false;}
-});
-async function searchAppleMusic(){
+const catalogPlayer=document.getElementById('catalogPlayer');
+const streamNow=document.getElementById('streamNow');
+const AUDIUS_API='https://api.audius.co/v1';
+const AUDIUS_APP='SoundLink';
+async function searchFreeMusic(){
  const term=songInput.value.trim();
- if(!term){searchStatus.textContent='Inserisci un titolo o un artista.';return;}
- if(!appleMusic){searchStatus.textContent='Prima configura e collega Apple Music con il token sviluppatore.';return;}
- searchStatus.textContent='Ricerca nel catalogo Apple Music…';songResults.replaceChildren();
+ if(!term){searchStatus.textContent='Inserisci il titolo, l’artista o un genere.';return;}
+ searchStatus.textContent='Cerco nel catalogo musicale gratuito…';
+ songResults.replaceChildren();streamNow.textContent='';
  try{
-  const response=await appleMusic.api.search(term,{types:'songs',limit:15});
-  const tracks=response&&response.songs&&response.songs.data?response.songs.data:[];
-  if(!tracks.length){searchStatus.textContent='Nessun brano trovato. Prova un altro titolo o artista.';return;}
-  searchStatus.textContent=tracks.length+' risultati. Premi Riproduci per ascoltare dentro SoundLink.';
+  const url=AUDIUS_API+'/tracks/search?query='+encodeURIComponent(term)+'&limit=20&app_name='+encodeURIComponent(AUDIUS_APP);
+  const response=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!response.ok)throw new Error('Servizio momentaneamente non disponibile ('+response.status+').');
+  const payload=await response.json();
+  const tracks=Array.isArray(payload.data)?payload.data:[];
+  if(!tracks.length){searchStatus.textContent='Nessun brano trovato. Prova un altro titolo, artista o genere.';return;}
+  searchStatus.textContent=tracks.length+' brani trovati. Scegline uno per ascoltarlo qui.';
   for(const track of tracks){
-   const attrs=track.attributes||{};
    const card=document.createElement('article');card.className='result';
-   if(attrs.artwork&&attrs.artwork.url){const img=document.createElement('img');img.className='art';img.src=attrs.artwork.url.replace('{w}','160').replace('{h}','160').replace('{f}','jpg');img.alt='';img.loading='lazy';card.appendChild(img);}
+   const art=track.artwork&& (track.artwork['150x150']||track.artwork['480x480']||track.artwork['1000x1000']);
+   if(art){const img=document.createElement('img');img.className='art';img.src=art;img.alt='';img.loading='lazy';card.appendChild(img);}
    const meta=document.createElement('div');meta.className='resultmeta';
-   const title=document.createElement('div');title.className='resulttitle';title.textContent=attrs.name||'Brano';
-   const artist=document.createElement('div');artist.className='resultartist';artist.textContent=attrs.artistName||'';
-   const album=document.createElement('div');album.className='resultalbum';album.textContent=attrs.albumName||'';
-   const play=document.createElement('button');play.type='button';play.className='btn';play.style.width='auto';play.style.padding='9px 13px';play.style.marginTop='9px';play.textContent='▶ Riproduci';
-   play.addEventListener('click',async()=>{
-    play.disabled=true;play.textContent='Avvio…';
-    try{await appleMusic.setQueue({song:track.id});await appleMusic.play();appleStatus.textContent='In riproduzione: '+(attrs.name||'brano')+' — '+(attrs.artistName||'');}
-    catch(error){appleStatus.textContent='Impossibile avviare il brano: '+(error&&error.message?error.message:'controlla abbonamento e autorizzazione Apple Music.');}
-    finally{play.disabled=false;play.textContent='▶ Riproduci';}
+   const title=document.createElement('div');title.className='resulttitle';title.textContent=track.title||'Brano senza titolo';
+   const artist=document.createElement('div');artist.className='resultartist';artist.textContent=(track.user&&track.user.name)||'Artista indipendente';
+   const details=document.createElement('div');details.className='resultalbum';details.textContent=[track.genre,track.release_date].filter(Boolean).join(' · ');
+   const play=document.createElement('button');play.type='button';play.className='btn';play.style.width='auto';play.style.padding='9px 13px';play.style.marginTop='9px';play.textContent='▶ Ascolta qui';
+   play.addEventListener('click',()=>{
+    const stream=AUDIUS_API+'/tracks/'+encodeURIComponent(track.id)+'/stream?app_name='+encodeURIComponent(AUDIUS_APP);
+    catalogPlayer.pause();catalogPlayer.src=stream;catalogPlayer.load();
+    catalogPlayer.play().then(()=>{streamNow.textContent='In riproduzione: '+(track.title||'Brano')+' — '+((track.user&&track.user.name)||'Audius');}).catch(()=>{streamNow.textContent='Non riesco ad avviare questo brano. Prova un altro risultato.';});
    });
-   meta.append(title,artist,album,play);card.appendChild(meta);songResults.appendChild(card);
+   meta.append(title,artist,details,play);card.appendChild(meta);songResults.appendChild(card);
   }
  }catch(error){searchStatus.textContent='Ricerca non riuscita: '+(error&&error.message?error.message:'riprova tra poco.');}
 }
-document.getElementById('songSearchButton').addEventListener('click',searchAppleMusic);
-songInput.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();searchAppleMusic();}});
+document.getElementById('songSearchButton').addEventListener('click',searchFreeMusic);
+songInput.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();searchFreeMusic();}});
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>
