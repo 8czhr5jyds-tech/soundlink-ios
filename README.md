@@ -1,31 +1,32 @@
 # SoundLink iOS
 
-Prima base nativa SwiftUI per iPhone.
+Prototipo nativo SwiftUI per iPhone. Questa branch contiene l'app iOS; la versione web/PWA è pubblicata separatamente da GitHub Pages.
 
-## Dispositivi iniziali da testare
-- JBL Flip 3: usa JBL Connect.
-- JBL Go 4: usa Auracast.
+## Dispositivi di riferimento
+- JBL Flip 3: JBL Connect (generazione precedente).
+- JBL Go 4: Bluetooth A2DP e Auracast.
 
-Questi due sistemi non sono interoperabili: il Flip 3 non può collegarsi direttamente al Go 4 tramite il pulsante JBL Connect/Auracast.
+I due altoparlanti non possono essere raggruppati direttamente con JBL Connect/Auracast: la Flip 3 non è un altoparlante Auracast.
 
-## Funzioni già inserite
+## Funzioni del prototipo nativo
 - Interfaccia SwiftUI in italiano.
-- Scheda dedicata ai due modelli JBL dichiarati.
-- Lettura delle uscite audio attive tramite AVAudioSession.
+- Modelli JBL Flip 3 e JBL Go 4 mostrati come dispositivi preferiti già associati all'iPhone.
+- Lettura della rotta audio realmente attiva tramite AVAudioSession.
+- Aggiornamento automatico quando iOS cambia uscita audio.
 - Selettore ufficiale di routing iOS tramite MPVolumeView.
-- Generazione e riproduzione di un tono di test.
-- Indicazione esplicita dei limiti di multi-output Bluetooth in iOS.
+- Tono di test di 2 secondi sull'uscita selezionata.
 
-## Limite tecnico importante
-Un'app iOS non può obbligare il sistema a inviare lo stesso flusso audio a due casse Bluetooth A2DP indipendenti. Le opzioni pratiche sono:
-- collegare le casse tra loro usando la stessa tecnologia JBL supportata da entrambi i modelli;
-- usare più dispositivi AirPlay compatibili e il routing gestito da iOS;
-- valutare un trasmettitore o hardware esterno che supporti esplicitamente due uscite Bluetooth simultanee.
+## Limiti che non vanno nascosti
+- La lista mostra la rotta audio attiva, non l'elenco completo dei dispositivi Bluetooth associati.
+- Un'app iOS non può forzare due casse Bluetooth A2DP indipendenti a riprodurre contemporaneamente lo stesso audio.
+- Il tono di test verifica una sola uscita selezionata; non prova una riproduzione sincronizzata su due casse.
+- Il prototipo non riproduce ancora brani musicali né controlla l'audio di Spotify/Apple Music.
+- JBL Connect e Auracast sono sistemi diversi e non interoperabili per questa coppia di modelli.
 
-Per la coppia Flip 3 + Go 4, la prima opzione non è disponibile perché JBL Connect e Auracast sono tecnologie diverse. Non va quindi presentata come una funzione già realizzabile nell'app.
+Per ottenere la riproduzione simultanea sulla Flip 3 e sulla Go 4 serve una soluzione esterna compatibile con entrambe le casse, oppure una verifica pratica con un trasmettitore multi-link che dichiari esplicitamente il supporto a due ricevitori A2DP. Non è una funzione ottenibile con il solo codice dell'app.
 
-Il tono di test verifica l'uscita selezionata, non certifica la sincronizzazione tra due casse.
-
-## Requisiti
-- Xcode 15 o successivo consigliato.
-- iOS 16 o successivo.
+## Build e distribuzione
+- La workflow GitHub Actions compila il target iOS Simulator su macOS.
+- Una build Simulator non è installabile su iPhone.
+- Per distribuire una vera app su iPhone servono firma Apple e un canale di distribuzione (ad esempio TestFlight); la firma e la pubblicazione non sono configurate in questo repository.
+- Requisiti di sviluppo: Xcode 15 o successivo; deployment target iOS 16.
