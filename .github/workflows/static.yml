@@ -1,10 +1,11 @@
-name: Deploy SoundLink Safari PWA
+name: Deploy SoundLink to GitHub Pages
 
 on:
   push:
     branches:
       - main
     paths:
+      - 'web/**'
       - '.github/workflows/static.yml'
   workflow_dispatch:
 
@@ -27,12 +28,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout SoundLink app
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: feature/soundlink-safari-pwa
+          ref: main
 
-      - name: Validate website
+      - name: Validate app
         shell: bash
         run: |
           set -euo pipefail
@@ -48,6 +49,6 @@ jobs:
         with:
           path: web
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
