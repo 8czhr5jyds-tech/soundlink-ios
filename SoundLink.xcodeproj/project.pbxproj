@@ -1,0 +1,29 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
+    A10000000000000000000001 = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600; }; buildConfigurationList = A10000000000000000000010; compatibilityVersion = "Xcode 14.0"; developmentRegion = it; hasScannedForEncodings = 0; knownRegions = (it, en, Base,); mainGroup = A10000000000000000000002; productRefGroup = A10000000000000000000005; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000006,); };
+    A10000000000000000000002 = { isa = PBXGroup; children = (A10000000000000000000003, A10000000000000000000004, A10000000000000000000005,); sourceTree = "<group>"; };
+    A10000000000000000000003 = { isa = PBXGroup; children = (A10000000000000000000011, A10000000000000000000012,); path = SoundLink; sourceTree = "<group>"; };
+    A10000000000000000000004 = { isa = PBXGroup; children = (); name = Frameworks; sourceTree = "<group>"; };
+    A10000000000000000000005 = { isa = PBXGroup; children = (A10000000000000000000013,); name = Products; sourceTree = "<group>"; };
+    A10000000000000000000006 = { isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000014; buildPhases = (A10000000000000000000007, A10000000000000000000008, A10000000000000000000009,); buildRules = (); dependencies = (); name = SoundLink; productName = SoundLink; productReference = A10000000000000000000013; productType = "com.apple.product-type.application"; };
+    A10000000000000000000007 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000015, A10000000000000000000016,); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000008 = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000009 = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000010 = { isa = XCConfigurationList; buildConfigurations = (A10000000000000000000017, A10000000000000000000018,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000011 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLinkApp.swift; sourceTree = "<group>"; };
+    A10000000000000000000012 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    A10000000000000000000013 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    A10000000000000000000014 = { isa = XCConfigurationList; buildConfigurations = (A10000000000000000000019, A10000000000000000000020,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000015 = { isa = PBXBuildFile; fileRef = A10000000000000000000011; };
+    A10000000000000000000016 = { isa = PBXBuildFile; fileRef = A10000000000000000000012; };
+    A10000000000000000000017 = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+    A10000000000000000000018 = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Release; };
+    A10000000000000000000019 = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = SoundLink; INFOPLIST_KEY_UILaunchScreen_Generation = YES; PRODUCT_BUNDLE_IDENTIFIER = it.soundlink.ios; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; }; name = Debug; };
+    A10000000000000000000020 = { isa = XCBuildConfiguration; buildSettings = { GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = SoundLink; INFOPLIST_KEY_UILaunchScreen_Generation = YES; PRODUCT_BUNDLE_IDENTIFIER = it.soundlink.ios; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; }; name = Release; };
+  };
+  rootObject = A10000000000000000000001;
+}

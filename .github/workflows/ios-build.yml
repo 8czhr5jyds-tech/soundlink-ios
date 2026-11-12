@@ -1,0 +1,15 @@
+name: iOS build
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build iOS Simulator app
+        run: xcodebuild -project SoundLink.xcodeproj -scheme SoundLink -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO
