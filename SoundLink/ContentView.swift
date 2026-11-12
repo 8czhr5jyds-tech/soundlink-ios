@@ -24,6 +24,9 @@ struct ContentView: View {
             }
         }
         .onAppear { audio.refreshRoutes() }
+        .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.routeChangeNotification)) { _ in
+            audio.refreshRoutes()
+        }
     }
 
     private var header: some View {
@@ -48,10 +51,10 @@ struct ContentView: View {
                 .font(.caption.weight(.bold))
                 .tracking(1.1)
                 .foregroundStyle(.cyan)
-            speakerRow(name: "JBL Flip 3", technology: "JBL Connect", status: "Non compatibile con Auracast", icon: "speaker.wave.2.fill")
+            speakerRow(name: "JBL Flip 3", technology: "JBL Connect", status: "Associata su iPhone · gestita da iOS", icon: "speaker.wave.2.fill")
             Divider().overlay(.white.opacity(0.12))
-            speakerRow(name: "JBL Go 4", technology: "Auracast", status: "Non compatibile con JBL Connect", icon: "hifispeaker.fill")
-            Text("Le due casse usano sistemi di collegamento differenti: non possono unirsi direttamente tra loro.")
+            speakerRow(name: "JBL Go 4", technology: "Auracast", status: "Associata su iPhone · gestita da iOS", icon: "hifispeaker.fill")
+            Text("Le due casse sono salvate come dispositivi preferiti. L’associazione Bluetooth non significa che siano entrambe in riproduzione: iOS decide quale uscita audio è attiva.")
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.68))
                 .fixedSize(horizontal: false, vertical: true)
@@ -78,12 +81,12 @@ struct ContentView: View {
 
     private var outputCard: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Label("USCITE AUDIO ATTIVE", systemImage: "waveform")
+            Label("USCITA AUDIO ATTUALMENTE ATTIVA", systemImage: "waveform")
                 .font(.caption.weight(.bold))
                 .tracking(1.1)
                 .foregroundStyle(.cyan)
             if audio.outputs.isEmpty {
-                Text("Nessuna uscita esterna rilevata")
+                Text("Nessuna uscita esterna attiva: l’audio può essere diretto all’altoparlante dell’iPhone.")
                     .foregroundStyle(.white.opacity(0.7))
             } else {
                 ForEach(Array(audio.outputs.enumerated()), id: \.offset) { _, output in
@@ -121,7 +124,7 @@ struct ContentView: View {
                 .font(.caption.weight(.bold))
                 .tracking(1.1)
                 .foregroundStyle(.cyan)
-            Text("Apri il selettore audio di iOS per scegliere una cassa o un dispositivo AirPlay.")
+            Text("Apri il selettore ufficiale di iOS per scegliere la cassa Bluetooth o il dispositivo AirPlay da usare in questo momento.")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.68))
             HStack {
@@ -146,7 +149,7 @@ struct ContentView: View {
                 .font(.caption.weight(.bold))
                 .tracking(1.1)
                 .foregroundStyle(.cyan)
-            Text("Riproduci un breve tono di test per controllare l'uscita selezionata.")
+            Text("Riproduci un breve tono per verificare l’uscita attiva. Il test non invia audio a due casse separate.")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.68))
             Button { audio.playTestTone() } label: {
