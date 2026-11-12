@@ -42,6 +42,17 @@ h1{font-size:29px;line-height:1.12;margin:0 0 10px;letter-spacing:-.7px}.lead{co
  <p class="hint" id="musicMessage" aria-live="polite">Scegli un file per iniziare. La riproduzione avviene sull'uscita audio attiva dell'iPhone.</p>
 </section>
 <section class="card">
+ <div class="cardhead"><strong>Cerca una canzone</strong><span class="tag">CATALOGO MUSICA</span></div>
+ <p class="small">Cerca per titolo o artista. SoundLink trova il brano nel catalogo Apple e ti porta alla sua pagina Apple Music per ascoltarlo.</p>
+ <form class="searchrow" id="songSearchForm">
+  <input id="songQuery" type="search" placeholder="Es. Blinding Lights" autocomplete="off" aria-label="Titolo o artista">
+  <button class="btn" type="submit">Cerca</button>
+ </form>
+ <div id="searchStatus" class="searchstatus" aria-live="polite">Scrivi il titolo di una canzone o il nome dell'artista.</div>
+ <div id="songResults" class="results"></div>
+ <p class="hint">La ricerca mostra brani disponibili nel catalogo. Per ascoltare il brano completo si apre Apple Music; serve l'app o il sito Apple Music e, per i brani in streaming, un abbonamento idoneo. L'ascolto non avviene direttamente dentro questa versione web di SoundLink.</p>
+</section>
+<section class="card">
  <div class="cardhead"><strong>Test audio</strong><span class="tag">440 Hz</span></div>
  <p class="hint" style="margin:0 0 8px">Avvia un breve tono per verificare quale uscita audio è attiva sul tuo iPhone.</p>
  <button class="btn" id="playTest" type="button">▶︎  Avvia test audio</button>
