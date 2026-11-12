@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="SoundLink: pannello audio e guida per le tue casse JBL su iPhone.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SoundLink">
+<title>SoundLink</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#121a2b;--muted:#9eabc2;--line:#26334c;--blue:#5c9dff;--cyan:#4de0d0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b3760 0,transparent 55%),var(--bg);color:#f5f7fb;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom)}
+main{max-width:540px;margin:auto;padding:22px 0 36px}.top{display:flex;align-items:center;gap:12px;margin:12px 0 28px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#67a8ff,#6556e8);display:grid;place-items:center;font-size:24px;font-weight:800;box-shadow:0 8px 28px #477de455}.brand{font-size:23px;font-weight:800;letter-spacing:.2px}.sub{color:var(--muted);font-size:13px;margin-top:3px}.pill{margin-left:auto;border:1px solid #2a4962;border-radius:30px;padding:7px 10px;color:#80dfd4;font-size:11px;font-weight:700}
+h1{font-size:29px;line-height:1.12;margin:0 0 10px;letter-spacing:-.7px}.lead{color:var(--muted);line-height:1.5;margin:0 0 22px}.card{background:linear-gradient(145deg,#151f33,#101727);border:1px solid var(--line);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 12px 30px #0002}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.cardhead strong{font-size:17px}.tag{font-size:11px;color:#8ea3c3;background:#202d44;border-radius:20px;padding:6px 9px}.speaker{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid #26334c}.speaker:first-of-type{border-top:0}.speakericon{width:45px;height:45px;border-radius:14px;background:#202e47;display:grid;place-items:center;font-size:23px}.speakername{font-weight:700}.speakerdesc{font-size:12px;color:var(--muted);margin-top:4px}.status{margin-left:auto;font-size:11px;color:#aab7cd;text-align:right}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8494ac;margin-right:5px}.btn{border:0;border-radius:15px;padding:15px 16px;font-size:15px;font-weight:750;width:100%;background:linear-gradient(100deg,#559bff,#7266f2);color:white;margin-top:9px;cursor:pointer}.btn.secondary{background:#202d44;color:#e8efff;border:1px solid #344564}.btn:active{transform:scale(.99)}.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:12px 2px 0}.notice{border:1px solid #68572b;background:#302817;border-radius:16px;padding:14px;color:#f1d99d;font-size:13px;line-height:1.5;margin:16px 0}.steps{padding-left:20px;color:#c5d0e3;font-size:14px;line-height:1.65}.steps li{padding:3px 0}.foot{text-align:center;color:#73829b;font-size:11px;margin:26px 0 8px}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="logo">S</div><div><div class="brand">SoundLink</div><div class="sub">Il tuo audio, sotto controllo</div></div><span class="pill">iPHONE</span></header>
+<h1>Collega la tua musica.</h1>
+<p class="lead">Un pannello semplice per controllare la connessione audio e provare l’uscita del tuo iPhone.</p>
+<section class="card">
+ <div class="cardhead"><strong>Le tue casse</strong><span class="tag">DISPOSITIVI</span></div>
+ <div class="speaker"><div class="speakericon">🔊</div><div><div class="speakername">JBL Flip 3</div><div class="speakerdesc">JBL Connect</div></div><div class="status"><span class="dot"></span>Gestisci da iPhone</div></div>
+ <div class="speaker"><div class="speakericon">🎵</div><div><div class="speakername">JBL Go 4</div><div class="speakerdesc">Auracast</div></div><div class="status"><span class="dot"></span>Gestisci da iPhone</div></div>
+ <p class="hint">SoundLink non può leggere direttamente lo stato Bluetooth delle casse da Safari. Abbina e seleziona l’uscita dalle impostazioni di iOS.</p>
+</section>
+<section class="card">
+ <div class="cardhead"><strong>Test audio</strong><span class="tag">440 Hz</span></div>
+ <p class="hint" style="margin:0 0 8px">Avvia un breve tono per verificare quale uscita audio è attiva sul tuo iPhone.</p>
+ <button class="btn" id="play">▶︎  Avvia test audio</button>
+ <button class="btn secondary" id="stop" disabled>■  Ferma test</button>
+ <p class="hint" id="message" aria-live="polite">Pronto per il test.</p>
+</section>
+<section class="card">
+ <div class="cardhead"><strong>Seleziona la cassa su iPhone</strong><span class="tag">GUIDA</span></div>
+ <ol class="steps">
+  <li>Apri <b>Impostazioni → Bluetooth</b> e collega la JBL desiderata.</li>
+  <li>Per cambiare uscita durante l’ascolto, apri il <b>Centro di Controllo</b>.</li>
+  <li>Tieni premuto il riquadro audio e tocca l’icona AirPlay/uscita audio, se disponibile.</li>
+  <li>Scegli la cassa collegata e torna a SoundLink per il test.</li>
+ </ol>
+</section>
+<div class="notice"><b>Nota sulle tue due JBL</b><br>Flip 3 usa JBL Connect, mentre Go 4 usa Auracast. Non possono essere raggruppate direttamente tra loro. Safari su iPhone non può forzare l’audio su due casse Bluetooth indipendenti contemporaneamente.</div>
+<div class="foot">SoundLink · Versione web per iPhone</div>
+</main>
+<script>
+let ctx=null,osc=null,gain=null;
+const play=document.getElementById('play'),stop=document.getElementById('stop'),msg=document.getElementById('message');
+play.addEventListener('click',async()=>{
+ try{
+  if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();
+  if(ctx.state==='suspended')await ctx.resume();
+  if(osc){try{osc.stop()}catch(e){}}
+  osc=ctx.createOscillator();gain=ctx.createGain();osc.type='sine';osc.frequency.value=440;gain.gain.value=.12;
+  osc.connect(gain);gain.connect(ctx.destination);osc.start();
+  play.disabled=true;stop.disabled=false;msg.textContent='Test in riproduzione. Per interrompere, premi “Ferma test”.';
+ }catch(e){msg.textContent='Il browser non ha potuto avviare l’audio. Riprova toccando il pulsante.'}
+});
+stop.addEventListener('click',()=>{
+ if(osc){try{osc.stop()}catch(e){}osc=null}
+ play.disabled=false;stop.disabled=true;msg.textContent='Test audio interrotto.';
+});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
+<!-- GitHub Pages deployment retry -->
+
+<!-- Retry GitHub Pages after Actions permissions update -->
